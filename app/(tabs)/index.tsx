@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { setToken } from "@/redux/authSlice";
 import { login } from "../api/authApi";
@@ -38,7 +45,16 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Login Form</Text>
+      <Text
+        style={{
+          color: "#007bff",
+          opacity: "85%",
+          fontSize: 16,
+          fontWeight: "normal",
+          alignSelf: "flex-start",
+        }}>
+        Login Form
+      </Text>
       <TextInput
         style={styles.input}
         placeholder='Username'
@@ -50,10 +66,11 @@ const LoginScreen = () => {
         secureTextEntry
         onChangeText={setPassword}
       />
-      <Button
-        title='Login'
-        onPress={handleLogin}
-      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
       {error && (
         <Text style={{ color: "crimson" }}>username / password incorrect</Text>
       )}
@@ -69,16 +86,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "50%",
     flexDirection: "column",
-    gap: "8px",
+    gap: "12px",
     height: "500px",
     margin: "auto",
     alignItems: "center",
   },
+  button: {
+    backgroundColor: "#007bff",
+    padding: "6px",
+    borderRadius: 5,
+    alignItems: "center",
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "semibold",
+  },
 
   input: {
-    borderRadius: "3px",
+    opacity: "35%",
+    borderRadius: "2px",
     width: "100%",
-    border: ".5px solid black",
+    boxShadow: "0 0 2px black",
     padding: "6px",
   },
 });
